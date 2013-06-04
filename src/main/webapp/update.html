@@ -1,0 +1,26 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.1.js"></script>
+<script type="application/javascript">      
+(function($) {
+    var url = 'http://localhost:8080/rest/employee/1';
+    $.ajax({
+        type: 'put',
+        url: url,
+        async: false,
+    	contentType: 'application/json',
+        data: '{"id": 1, "name": "John"}',
+        success: function(data, textStatus, request) {
+            alert(textStatus);
+        },
+        error: function(xhr) {
+            alert('Error!  Status = ' + xhr.status + " Message = " + xhr.statusText);
+        }
+    });
+})(jQuery);
+</script>
+</head>
+<body>
+    <!-- we will add our HTML content here -->
+</body>
+</html>
