@@ -32,7 +32,7 @@ public class EmployeeController {
     public Employee get(@PathVariable long id) {
         Employee employee = employees.get(id);
         if (employee == null) {
-            throw new EmployeeNotExistsException();
+            throw new EmployeeNotExistsException("Employee with id: " + id + " doesn't exist");
         }
         return employee;
     }
@@ -41,7 +41,7 @@ public class EmployeeController {
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody Employee employee, @PathVariable long id) {
         if (employee.getId() != id) {
-            throw new IdNotMatchException();
+            throw new IdNotMatchException("path parameter id: " + id + " doesn't match the id from employee: " + employee.getId());
         }
         employees.put(id, employee);
     }
@@ -49,7 +49,7 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.POST, consumes = { "application/json" })
     public ResponseEntity<Employee> create(@RequestBody Employee employee) {
         if (employees.containsKey(employee.getId())) {
-            throw new EmployeeExistsException();
+            throw new EmployeeExistsException("employee with id " + employee.getId() + " already exists");
         }
         employees.put(employee.getId(), employee);
 
@@ -68,7 +68,7 @@ public class EmployeeController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
         if (!employees.containsKey(id)) {
-            throw new EmployeeNotExistsException();
+            throw new EmployeeNotExistsException("Employee with id: " + id + " doesn't exist");
         }
         employees.remove(id);
     }
