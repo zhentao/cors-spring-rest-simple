@@ -14,7 +14,7 @@
     Fully-qualified packages may also be specified for component-scanning -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>com.zhentao.cors.example.SpringConfig</param-value>
+    <param-value>com.zhentao.cors.example.config</param-value>
   </context-param>
 
   <listener>
@@ -23,7 +23,7 @@
 
   <filter>
     <filter-name>cors</filter-name>
-    <filter-class>com.zhentao.cors.example.CorsFilter</filter-class>
+    <filter-class>com.zhentao.cors.example.filter.CorsFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>cors</filter-name>
